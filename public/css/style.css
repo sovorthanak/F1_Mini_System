@@ -1,0 +1,2356 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General Styles */
+body {
+    display: flex;
+    font-family: "Roboto", sans-serif;
+    background-color: rgb(231, 231, 231);
+    margin: 0;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #1a3f6f;
+    color: white;
+    position: fixed;
+    transition: transform 0.3s ease;
+    z-index: 100;
+}
+
+.sidebar-header {
+    padding: 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5%;
+    padding-left: 20px;
+    height: 80px;
+    background-color: #1f559d;
+    text-decoration: none;
+    color: white;
+}
+
+.sidebar-header a {
+    text-decoration: none;
+    color: white;
+}
+
+.sidebar-header .logo {
+    width: 25%;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.sidebar nav .top-links a {
+    display: block;
+    padding: 15px 30px;
+    color: white;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.sidebar nav .top-links .top-links-menu:hover {
+    background-color: #055699e6;
+}
+
+.sidebar nav .top-links .a-active {
+    background-color: #1461a0e6;
+    font-weight: 700;
+    color: white;
+}
+
+.sidebar-toggle {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 24px;
+    left: 260px; /* Position it just outside the sidebar */
+    top: 20px;
+    z-index: 101; /* Ensure it's above the sidebar */
+    transition: left 0.3s ease;
+}
+
+.main-content {
+    margin-left: 250px;
+    display: flex;
+    width: 100vw;
+    flex-direction: column;
+    align-items: center;
+    transition: margin-left 0.3s ease; /* background-color: rgba(128, 128, 128, 0.162); */
+}
+
+/* Sidebar when collapsed */
+.sidebar.collapsed {
+    transform: translateX(-80%);
+    width: 350px;
+    height: 80px;
+    transition: transform 0.3s ease;
+    z-index: 100;
+}
+
+.sidebar.collapsed .sidebar-header {
+    display: flex;
+    justify-content: end;
+    background-color: rgb(231, 231, 231);
+}
+
+.sidebar.collapsed .sidebar-header .sidebar-toggle {
+    color: #002752;
+}
+
+.sidebar.collapsed .sidebar-header a {
+    display: none;
+}
+.sidebar.collapsed .top-links {
+    display: none;
+}
+
+.main-content.expanded {
+    margin-left: 0; /* Adjust when sidebar is collapsed */
+}
+
+.main {
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.main-head {
+    width: 100%;
+    display: flex;
+    height: 80px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    transition: padding-left 0.3s ease;
+}
+
+.main-head h1 {
+    text-transform: capitalize;
+}
+
+.main-content.expanded .main-head {
+    padding-left: 70px;
+}
+
+.user {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.user-inf {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-inf .name {
+    font-size: 18px;
+    margin-right: 15px;
+    display: flex;
+    gap: 15px;
+}
+
+.user .logout {
+    color: black;
+    transition:
+        color 0.3s,
+        background-color 0.3s,
+        padding 0.3s;
+    padding: 5px 10px;
+    border-radius: 5px; /* Optional: to make the background corners rounded */
+    position: relative;
+    padding-left: 20px;
+    background-color: none;
+}
+
+.user .logout a {
+    text-decoration: none;
+    font-weight: 600;
+    color: black;
+    transition:
+        color 0.3s,
+        background-color 0.3s,
+        padding 0.3s;
+}
+
+.user .logout:hover a {
+    color: white; /* Change to a nice contrasting color on hover */
+    background-color: rgb(43, 43, 43); /* Subtle background color change */
+    font-weight: 700;
+    padding: 7px 20px; /* Slightly increase padding for a more interactive feel */
+}
+
+.user .logout::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: black; /* Color of the separator */
+    height: 100%; /* Full height of the parent element */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    gap: 10px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col-md-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+/* Card Styles */
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.card-header {
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+}
+
+.card-header h4 {
+    font-size: 24px;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.card-header span {
+    display: flex;
+    gap: 1px;
+}
+
+.card-body {
+    padding: 20px 30px;
+}
+
+/* Form Styles */
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition:
+        border-color 0.15s ease-in-out,
+        box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Margin Bottom */
+.mb-3 {
+    margin-bottom: 1rem;
+}
+
+/* Button Styles */
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+        color 0.15s ease-in-out,
+        background-color 0.15s ease-in-out,
+        border-color 0.15s ease-in-out,
+        box-shadow 0.15s ease-in-out;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+.btn-primary-active {
+    background-color: #01438a;
+    border-color: #004085;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+/* Float End */
+.float-end {
+    margin-left: auto;
+}
+
+.alert {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    position: relative;
+    display: block;
+}
+
+/* Default Alert */
+.alert-primary {
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+}
+
+.alert-primary .alert-link {
+    color: #002752;
+}
+
+/* Success Alert */
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.alert-success .alert-link {
+    color: #0b2e13;
+}
+
+/* Success Button */
+.btn-success {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+/* Table Styles */
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 0.5rem;
+    vertical-align: middle;
+    text-align: center;
+    border-top: 1px solid #dee2e6;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.table tbody + tbody {
+    border-top: 2px solid #dee2e6;
+}
+
+/* Bordered Table */
+.table-bordered {
+    border: 1px solid #dee2e6;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #dee2e6;
+}
+
+.table-bordered thead th,
+.table-bordered thead td {
+    border-bottom-width: 2px;
+}
+
+/* Striped Table */
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Column class with margin bottom */
+.col-mb-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-bottom: 1rem; /* Margin bottom of 1rem */
+}
+
+h3 {
+    margin-bottom: 15px;
+}
+
+/* Button warning styles */
+.btn-warning {
+    color: #ffffff; /* Text color */
+    background-color: #dba400; /* Background color */
+    border-color: #ffc107; /* Border color */
+    padding: 0.375rem 0.75rem; /* Padding for top/bottom and left/right */
+    font-size: 1rem; /* Font size */
+    border-radius: 0.25rem; /* Rounded corners */
+    text-align: center; /* Center text */
+    vertical-align: middle; /* Align text vertically */
+    cursor: pointer; /* Pointer cursor on hover */
+    display: inline-block; /* Inline-block display */
+    font-weight: 400; /* Normal font weight */
+    line-height: 1.5; /* Line height */
+    border: 1px solid transparent; /* Border */
+    transition:
+        color 0.15s ease-in-out,
+        background-color 0.15s ease-in-out,
+        border-color 0.15s ease-in-out; /* Transition effects */
+}
+
+/* Hover state */
+.btn-warning:hover {
+    color: #ffffff; /* Text color */
+    background-color: #bc8d00; /* Background color on hover */
+    border-color: #d39e00; /* Border color on hover */
+}
+
+/* Focus state */
+.btn-warning:focus {
+    color: #ffffff; /* Text color */
+    background-color: #e0a800; /* Background color on focus */
+    border-color: #d39e00; /* Border color on focus */
+    outline: 0; /* Remove default outline */
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5); /* Box shadow for focus */
+}
+
+/* Active state */
+.btn-warning:active {
+    color: #ffffff; /* Text color */
+    background-color: #d39e00; /* Background color when active */
+    border-color: #c69500; /* Border color when active */
+}
+
+/* Disabled state */
+.btn-warning:disabled {
+    color: #ffffff; /* Text color */
+    background-color: #ffc107; /* Background color */
+    border-color: #ffc107; /* Border color */
+    opacity: 0.65; /* Reduced opacity for disabled state */
+    cursor: not-allowed; /* Not-allowed cursor */
+}
+
+.text-danger {
+    color: #dc3545; /* Bootstrap's 'danger' color */
+}
+/* Badge class for styling badges */
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+}
+
+/* Background color for primary badges */
+.bg-primary {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: #fff; /* White text color */
+}
+
+/* Margin utility class for horizontal spacing */
+.mx-1 {
+    margin-left: 0.25rem !important;
+    margin-right: 0.25rem !important;
+}
+
+.db {
+    width: 100%;
+    display: flex;
+    gap: 15px;
+}
+
+.db .cust-inf {
+    width: 270px;
+    background-color: white;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 15px;
+    border-radius: 10px;
+    gap: 10px;
+}
+.db .cust-inf .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.db .cust-inf .head h1 {
+    font-size: 24px;
+    color: rgb(0, 90, 164);
+}
+.db .cust-inf .head i {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(209, 227, 241);
+    color: rgb(0, 90, 164);
+    border-radius: 50%;
+    margin-top: 7px;
+}
+
+.db .cust-inf .body {
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+    gap: 90px;
+    padding-bottom: 5px;
+}
+
+.db .cust-inf .body .row {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    font-weight: 500;
+}
+.db .cust-inf .body .row .title {
+    font-size: 16px;
+}
+.db .cust-inf .body .row .number {
+    font-size: 34px;
+    color: rgb(0, 90, 164);
+}
+
+.db .cust-inf .body .row:last-child .number {
+    color: rgb(0, 159, 0);
+}
+
+.adn-comp-main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.adn-comp-main .main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0 14px;
+}
+
+.adn-comp-main-head {
+    background-color: #f8f9fa;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    border-bottom: 2px solid #e9ecef;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.adn-comp-main-head .btn {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.adn-comp-main-head .btn:hover {
+    background-color: #0056b3;
+}
+
+.adn-comp-main-head .btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+
+.cust-row {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    gap: 10%;
+}
+
+.invoice-row {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    gap: 0;
+}
+
+.cust-row-box {
+    height: 100%;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.cust-row-box .cust-icon {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background-color: rgb(186, 218, 242);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cust-row-box .cust-icon i {
+    font-size: 40px;
+    color: rgb(0, 90, 164);
+}
+
+.cust-row-box .cust-num {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 7px;
+}
+
+.cust-row-box .cust-num p {
+    font-size: 14px;
+}
+.cust-row-box .cust-num h1 {
+    font-size: 40px;
+}
+
+.total-cust .cust-num h1 {
+    color: rgb(0, 90, 164);
+}
+.active-cust .cust-num h1 {
+    color: rgb(0, 159, 0);
+}
+.active-cust .unpaid-cust h1 {
+    color: #a80616ae;
+}
+.table .status {
+    text-align: center;
+}
+.card-body form {
+    min-width: 900px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    margin-bottom: 1rem;
+}
+
+.input-group input {
+    flex: 1;
+    padding: 0.5rem;
+    border: none;
+    outline: none;
+}
+
+.input-group button {
+    padding: 0.5rem;
+    background: #007bff;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.add-cust .card-body form .input {
+    display: flex;
+    flex-direction: column;
+    height: 630px;
+    flex-wrap: wrap;
+    column-gap: 5%;
+}
+.add-cust .card-body form .mb-3 {
+    margin-bottom: 0.6rem;
+    width: 30%;
+}
+.add-cust .card-body form .mb-3 label {
+    display: flex;
+    gap: 5px;
+}
+.add-cust .card-body form .mb-3 label span {
+    color: red;
+}
+.add-cust .card-body .form-control {
+    line-height: 1;
+}
+
+.show_cust .show_cust_row {
+    display: flex;
+    justify-content: space-between;
+}
+.show_cust .show_cust_row .cul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 30%;
+}
+.show_cust .show_cust_row .cul span {
+    display: flex;
+    gap: 10px;
+}
+.show_cust .show_cust_row .cul p {
+    width: 170px;
+    display: flex;
+    justify-content: space-between;
+}
+.show_cust .show_cust_row .cul span .value {
+    color: #0056b3;
+}
+
+.search-panel {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.search-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.search-table th {
+    background-color: #f2f2f2;
+    padding: 8px;
+    text-align: left;
+}
+
+.search-table td {
+    padding: 8px;
+}
+
+.dataTables_wrapper .dataTables_info {
+    padding: 0.5rem;
+    color: #004992; /* Bootstrap dark */
+}
+
+#DataTables_Table_0_wrapper {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #ced4da;
+}
+
+/* ---- 09/12/2024 ----*/
+.yes-no-option {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    height: 30px;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.add-cust-adv .card-body form .input {
+    height: 740px;
+}
+.text-danger-blue {
+    color: #0056b3;
+    font-size: 14px;
+    font-style: italic;
+}
+
+/*  Updated CSS print part on 13/09/2024  */
+
+@media print {
+    /* Hide unnecessary elements */
+    body .sidebar,
+    .card-header,
+    .search-container,
+    .dataTables_length,
+    .dataTables_filter {
+        display: none !important;
+    }
+    .main-head {
+        display: none !important;
+    }
+
+    .container::before {
+        content: url("/img/Fast_One_Logo_txt.png"); /* Load the logo image */
+        display: inline-block;
+    }
+
+    .container::after {
+        content: "Account Report"; /* The text you want */
+        font-size: 1.2rem;
+        top: 0;
+        right: 0;
+        padding: 20px;
+        font-weight: bold;
+    }
+
+    /* Make the main content and container visible */
+    .container,
+    #report-table {
+        visibility: visible !important;
+        width: 100% !important;
+    }
+
+    /* Ensure the main content fills the full width */
+    .main-content {
+        position: absolute;
+        top: 0;
+        left: -22px;
+        width: 100% !important; /* Stretch across the entire width */
+        margin: 0;
+        padding: 0;
+        visibility: visible !important;
+    }
+    /* Show "Account Report" only on the first page */
+    .container:first-of-type::after {
+        content: "Account Report";
+        font-size: 1.8rem;
+        position: absolute;
+        top: 2.3vh;
+        padding: 10px;
+    }
+
+    /* Break after the first page to avoid repetition */
+    .container {
+        page-break-after: always;
+    }
+
+    /* Hide the "Account Report" text from subsequent pages */
+    .container + .container::after {
+        display: none;
+    }
+
+    /* Set table width and remove unnecessary borders */
+    #report-table {
+        visibility: visible !important;
+        width: 100% !important;
+    }
+
+    /* Ensure pagination and info take up full width */
+    .dataTables_paginate,
+    .dataTables_info {
+        width: 100% !important; /* Stretch to 100% of the table width */
+        visibility: visible !important; /* Ensure they are visible */
+        display: block !important; /* Ensure block display for stretching */
+        text-align: center !important; /* Center align the pagination */
+    }
+
+    /* Remove page buttons (First, Previous, Next, Last) */
+    .dataTables_paginate .paginate_button {
+        display: none !important;
+    }
+
+    #report-table th {
+        color: black;
+    }
+    /* Ensure table headers and cells have visible borders */
+    #report-table th,
+    #report-table td {
+        border: 0.2px groove rgb(130, 130, 130) !important;
+        padding: 5px 5px !important; /* Ensure proper padding */
+        margin: 2px !important;
+        height: 30px !important; /* Adjust height here */
+        vertical-align: middle !important; /* Center content vertically */
+    }
+
+    /* Hide extra elements or any unnecessary text in print */
+    .dataTables_wrapper .top {
+        display: none !important;
+    }
+
+    /* Prevent table content from breaking into two lines */
+    #report-table td,
+    #report-table th {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+/*  Updated CSS print part on 16/09/2024  */
+
+.search-table tr th {
+    text-align: center;
+}
+
+.search-table tr #radio-button {
+    height: 2.3vw;
+}
+
+.search-table tr #radio-button span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search-table tr #radio-button label {
+    margin-right: 2vw;
+}
+
+#all-cust-table thead tr th {
+    text-align: center;
+    vertical-align: middle;
+}
+
+#acc-status-his {
+    display: flex;
+    gap: 5px;
+}
+
+#acc-status-his-table-left #acc-status-his-table-right {
+    flex: 1;
+}
+
+#stat-change-col-2 {
+    background-color: #418cf0;
+}
+
+#stat-change-col-3 {
+    background-color: #fcb441;
+}
+#stat-change-col-4 {
+    background-color: #e0400a;
+}
+#stat-change-col-5 {
+    background-color: #bfbfbf;
+}
+#stat-change-col-6 {
+    background-color: #1a3b69;
+}
+#stat-change-col-7 {
+    background-color: #ffe382;
+}
+#stat-change-col-8 {
+    background-color: #129cdd;
+}
+
+#acc-sum-report {
+    display: flex;
+    gap: 5px;
+}
+
+#acc-sum-report-graph,
+#acc-sum-report-table {
+    flex: 1;
+}
+
+#title-accounts-by-fee {
+    text-align: center;
+}
+
+#acc-sum-report-acc-by-fee {
+    display: flex;
+    gap: 5px;
+}
+
+#acc-sum-report-acc-by-fee-kh {
+    margin-top: 2vh;
+    flex: 1;
+    border: 1px dashed black;
+    color: red;
+}
+
+#acc-sum-report-acc-by-fee-en {
+    display: flex;
+    justify-content: space-between; /* Spread the charts evenly */
+    flex-wrap: wrap; /* Ensure they wrap in smaller screens */
+}
+
+.acc-sum-report-graph-en {
+    /* Use class instead of ID */
+    flex: 0 1; /* Adjust width to allow for responsive behavior */
+}
+
+#report-table th {
+    text-align: center;
+    vertical-align: middle;
+    color: black;
+}
+
+/*-------------- 26/09/24 --------------*/
+.article {
+    padding: 5px;
+    background: #fff;
+    /* border-radius: 8px; */
+    display: none; /* Initially hide all articles */
+    gap: 20px;
+}
+
+.article-content {
+    display: none; /* Initially hide all article contents */
+}
+
+.article h1 {
+    color: #333;
+}
+
+.article p {
+    color: #555;
+}
+
+.article img {
+    width: 100%; /* Adjust the image width as needed */
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Button styles */
+button {
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: start;
+}
+
+button.active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+button:focus {
+    outline: none;
+}
+
+.btn_container {
+    min-width: 250px;
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.btn_container a {
+    width: 100%;
+}
+.btn_container button {
+    padding: 5px 10px;
+    width: 100%;
+}
+
+.customer-details {
+    width: 100%; /* Adjust width as necessary */
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.customer-details-row {
+    display: flex;
+    flex-wrap: wrap;
+    /* background-color: #004085; */
+}
+
+.customer-details-label {
+    width: 150px; /* Adjust the width of label cells */
+    text-align: left;
+    /* background-color: blue; */
+}
+
+.customer-details-value {
+    display: flex;
+    width: 30%; /* Adjust width of value cells */
+    /* background-color: red; */
+}
+
+.customer-details-address-value {
+    display: flex;
+    width: 30%; /* Adjust width of value cells */
+}
+
+.customer-details-row-space {
+    width: 100px;
+}
+
+.edit-button {
+    margin-top: 20px;
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+.colon {
+    margin-right: 20px; /* Adjust value as needed */
+}
+
+.generate-btn {
+    line-height: 0.7;
+}
+
+/* This is the css updated on 10/10/2024*/
+
+#accept-area {
+    margin-right: 25px;
+}
+
+/* This is the css updated on 16/10/2024*/
+
+#edit-cust {
+    color: red;
+    margin-right: 10px;
+}
+
+#edit-cust-space {
+    margin-right: 17px;
+}
+
+/* This is the css updated on 21/10/2024*/
+
+.customer-contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+    align-items: center;
+    /* background-color: #004085; */
+}
+
+.customer-contact-label {
+    width: 130px; /* Adjust the width of label cells */
+    text-align: left;
+    /* background-color: blue; */
+}
+
+.customer-contact-value {
+    display: flex;
+    align-items: center;
+
+    width: 50%; /* Adjust width of value cells */
+}
+
+.form-control-contact {
+    display: block;
+    width: 100%;
+    padding: 0.3rem 0.2rem;
+    font-size: 1rem;
+    line-height: 1;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition:
+        border-color 0.15s ease-in-out,
+        box-shadow 0.15s ease-in-out;
+}
+
+.form-control-contact:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+#article2Home,
+#article2_1 {
+    /* background-color: #0b2e13; */
+    width: 100%;
+}
+
+#article2Home h3,
+#article2_1 h3 {
+    font-size: 22px;
+    padding-bottom: 12px;
+}
+
+#view-contact {
+    display: flex;
+    gap: 5px;
+}
+
+#view-contact-text {
+    margin-top: 2vh;
+    flex: 1;
+    border: 1px dashed black;
+    background-color: #f5f5f5;
+}
+
+#view-contact-text p {
+    color: red;
+}
+
+/* This is the css updated on 01/11/2024*/
+
+.cust-article {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+}
+
+#detail-article {
+    width: 100%;
+}
+
+.cust-article .active {
+    background-color: #007bff; /* Example color */
+    color: white;
+    border: 1px solid #0056b3;
+}
+
+.admin-nav {
+    widows: 100%;
+    height: auto;
+}
+.admin-nav-conrtainer {
+    width: 100%;
+    height: 50px;
+}
+
+.admin-nav-conrtainer {
+    display: flex;
+    gap: 5px;
+}
+.admin-nav .har-line {
+    width: 100%;
+    height: 5px;
+    background-color: #004085;
+}
+
+.all-orders-nav {
+    widows: 100%;
+    height: auto;
+}
+.all-orders-nav-conrtainer {
+    width: 100%;
+    height: 50px;
+}
+
+.all-orders-nav-conrtainer {
+    display: flex;
+    gap: 5px;
+}
+.all-orders-nav .har-line {
+    width: 100%;
+    height: 5px;
+    background-color: #004085;
+}
+
+.orders {
+    margin-top: 10px;
+}
+
+.orders .orders-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.orders .form-container {
+    width: 90%;
+    max-width: 1300px;
+    margin: 0 auto;
+    margin-top: 10px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.orders .section {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.orders .section .form-row-3col-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+.orders .section .form-row-3col-container .each-col {
+    display: flex;
+    flex-direction: column;
+    width: 32%;
+    gap: 5px;
+}
+.orders .section .form-row-3col-container .each-col .each-form {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+.orders .section .form-row-3col-container .each-col .each-form-textarea {
+    align-items: start;
+}
+
+.orders .section .form-row-3col-container .each-col .each-form label {
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+}
+.orders .section .form-row-3col-container .each-col .each-form-40-60 label {
+    width: 40%;
+}
+
+.orders .section .form-row-3col-container .each-col .each-form input,
+.orders .section .form-row-3col-container .each-col .each-form .input-fill,
+.orders .section .form-row-3col-container .each-col .each-form select {
+    width: 65%;
+    height: 25px;
+}
+
+.orders .section .form-row-3col-container .each-col .each-form textarea {
+    width: 65%;
+    height: 50px;
+}
+
+.orders .section .form-row-3col-container .each-col .each-form-40-60 input,
+.orders .section .form-row-3col-container .each-col .each-form-40-60 textarea,
+.orders
+    .section
+    .form-row-3col-container
+    .each-col
+    .each-form-40-60
+    .input-fill,
+.orders .section .form-row-3col-container .each-col .each-form-40-60 select {
+    width: 55%;
+}
+
+.orders .section h2 {
+    font-size: 16px;
+    margin: 0 0 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+}
+
+.orders .form-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.orders .each-col label {
+    font-size: 13px;
+    margin-bottom: 3px;
+}
+
+.orders .each-col input,
+.orders .each-col select,
+.orders .each-col textarea {
+    padding: 1px 5px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+.orders .customerID_input {
+    width: 65%;
+    display: flex;
+    gap: 5px;
+}
+
+.orders .note {
+    font-size: 11px;
+    color: #142af0;
+    margin-top: 5px;
+}
+
+.orders button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.orders button:hover {
+    background-color: #0056b3;
+}
+.orders .customerID_input button {
+    background-color: rgb(222, 222, 222);
+    color: black;
+    border: 1px solid;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 35%;
+    text-align: center;
+}
+
+.orders .each-col .each-form .input-fill {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.orders .each-col .each-form .input-fill p {
+    font-size: 13px;
+}
+
+.orders .tariffs-table td {
+    font-size: 14px;
+}
+.orders .tariffs-table th {
+    font-size: 15px;
+}
+/* .orders .account-cur-section, .orders .account-new-section{
+    display: none
+} */
+/* This is the css updated on 19/12/2024*/
+
+.form-customer-contact-left {
+    display: block;
+    text-align: end;
+    width: 6vw;
+    padding: 0.3rem 0.5rem;
+    margin: 0 0.4rem;
+    font-size: 1rem;
+    line-height: 1;
+    color: #495057;
+    /* background-color: #fff; */
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    /* background-color: #198d95; */
+    border-radius: 0.25rem;
+    transition:
+        border-color 0.15s ease-in-out,
+        box-shadow 0.15s ease-in-out;
+}
+
+.form-customer-contact:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.form-customer-contact-right {
+    border: none; /* Removes the border */
+    outline: none; /* Removes the outline */
+    background-color: transparent; /* Makes the background transparent */
+    font-size: inherit; /* Inherits font size from its parent */
+    color: inherit; /* Inherits font color from its parent */
+    text-align: end;
+    width: 6vw; /* Adjust the width as needed */
+}
+
+.add-cust-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding-left: 50px;
+    width: 100%;
+}
+
+.add-cust-checkbox input[type="checkbox"] {
+    margin-right: 5px; /* Space between the checkbox and the label */
+}
+
+/* Styling for the label text for better visibility and interaction */
+.add-cust-checkbox-label {
+    cursor: pointer; /* Changes cursor to pointer when hovering over the label */
+}
+
+.customer-add-acc-value {
+    display: flex;
+    align-items: center;
+    width: 80%; /* Adjust width of value cells */
+}
+
+.add-cust-checkbox-bottom,
+.add-cust-checkbox-up {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-left: 10vw;
+}
+
+/* This is the css updated on 20/12/2024*/
+
+#cmt-box {
+    width: 100%;
+    height: 10vh;
+    border-radius: 0.3rem;
+}
+
+.generated-password {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* This is the css updated on 24/12/2024*/
+
+.form-customer-billing {
+    border: none; /* Removes the border */
+    outline: none; /* Removes the outline */
+    background-color: transparent; /* Makes the background transparent */
+    font-size: inherit; /* Inherits font size from its parent */
+    color: inherit; /* Inherits font color from its parent */
+    width: 10vw; /* Adjust the width as needed */
+}
+
+/* This is the css updated on 27/12/2024*/
+
+/* Ensure table headers and cells have visible borders */
+#cust-acc-table th {
+    padding: 5px 5px !important; /* Ensure proper padding */
+    margin: 2px !important;
+    height: 30px !important; /* Adjust height here */
+    vertical-align: middle !important; /* Center content vertically */
+}
+
+#acc-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+}
+
+#acc-button button {
+    width: 115px;
+    height: 30px;
+    text-align: center;
+    font-size: 13px;
+}
+
+/* This is the css updated on 30/12/2024*/
+
+.cust-acc-row {
+    vertical-align: top !important; /* Center content vertically */
+}
+
+.cust-acc-colon {
+    margin-right: 1.6vw; /* Adjust value as needed */
+}
+
+#margin-top {
+    margin-top: 10px;
+}
+
+.customer-account-label {
+    width: 6vw; /* Adjust the width of label cells */
+    text-align: left;
+    margin-right: 1.3vw;
+}
+
+.customer-account-value {
+    display: flex;
+    align-items: center;
+}
+#cust-acc-space-left {
+    margin-right: 12px;
+}
+
+#cust-acc-space-right {
+    margin-right: 8px;
+}
+#cust-acc-space-usd {
+    margin-right: 1.2vw;
+}
+
+.recurring-cust-acc {
+    width: 4vw;
+}
+
+#align-acc-row {
+    text-align: center;
+}
+
+/* This is the css updated on 02/01/2025*/
+.acc-details {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+}
+.box-left {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    gap: 5px;
+}
+.box-right {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 40%;
+    /* background-color: blue; */
+}
+
+#acc-status-row {
+    display: flex;
+}
+
+#acc-status-row span {
+    width: 150px;
+    height: 4vh;
+    /* background-color: yellow; */
+}
+
+#acc-button-row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    /* background-color: #c82333; */
+    gap: 10px; /* Space between buttons */
+}
+
+#acc-button-row button {
+    width: 115px;
+    height: 30px;
+    font-size: 13px;
+    text-align: center;
+}
+
+#acc-detail-row {
+    display: flex;
+}
+
+/* This is the css updated on 08/01/2025*/
+
+.account-details-value {
+    display: flex;
+    width: 65%; /* Adjust width of value cells */
+}
+
+/* This is the css updated on 11/02/2025*/
+
+.save-button,
+.cancel-button,
+.edit-button,
+.reset-button,
+.active-button {
+    font-size: 13px;
+}
+
+.account_status_disp {
+    /* background-color: #007bff39; */
+    border-radius: 20px;
+    width: 100px;
+    padding: 3px;
+    font-size: 13.5px;
+    font-weight: 500;
+    margin: 0 auto; /* Centers the block element */
+    text-align: center; /* Centers text inside the div */
+}
+
+/* Style the top bar (search, pagination, and info) */
+.dataTables_wrapper .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: #f8f9fa; /* Light gray background */
+    border-radius: 8px;
+}
+
+/* Style the search input */
+.dataTables_filter input {
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: start;
+}
+
+/* Style pagination buttons */
+.dataTables_paginate .paginate_button {
+    padding: 5px 10px;
+    margin: 2px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.dataTables_paginate .paginate_button:hover {
+    background: #0056b3;
+}
+
+/* Style the table header */
+table.dataTable thead th {
+    text-align: center;
+}
+
+/* This is the css updated on 14/03/2025*/
+
+.register_box_left {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: 5px;
+
+    /* background-color: rgb(99, 115, 205); */
+}
+.register_box_right {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 50%;
+}
+
+.register-mb-3 {
+    margin-bottom: 10px;
+}
+
+.register-mb-3-btn {
+    margin-top: 30px;
+}
+
+.add-cust .card-body form .register-mb-3 label span {
+    color: red;
+}
+
+.card-body-invoice {
+    width: 794px;
+    height: 1123px;
+    margin: 0 auto; /* Center the element */
+    background: white; /* White background like paper */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow for paper effect */
+}
+
+.card-invoice {
+    background-color: rgb(222, 222, 222);
+}
+
+.installation-fee-row {
+    display: none;
+}
+
+.inv-installation-fee-row {
+    display: none;
+}
+
+.installation-fee-quantity-row {
+    display: none;
+}
+
+.register-mb-3-double-input {
+    display: flex;
+    gap: 10px;
+}
+
+.internet-double-input {
+    display: flex;
+    gap: 0px;
+    width: 100%;
+    flex-direction: column;
+}
+
+.register-mb-3-double-input div {
+    width: 50%;
+}
+
+/* This is the css updated on 06/05/2025*/
+
+.cust-details {
+    display: flex;
+    flex-direction: row;
+}
+
+.cust-details .register_box_left,
+.cust-details .register_box_right {
+    flex: 1;
+    background-color: #fff;
+    padding: 10px 28px;
+    border: 1px solid #e0e6ed;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.cust-details .customer-details-row {
+    padding: 5px 0;
+}
+
+.cust-details .customer-details-label {
+    flex: 0 0 200px;
+}
+
+.cust-details .customer-details-label i {
+    margin-right: 8px;
+    color: #1461a0e6; /* Change this to any color you like */
+}
+
+.cust-details .customer-details-value {
+    flex: 1;
+}
+
+.deails-cust-row-box {
+    width: auto;
+}
+
+.details-invoice-row {
+    justify-content: space-between;
+    padding: 0 5%;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    color: #fff;
+    background-color: #5c636a;
+    border-color: #565e64;
+}
+
+.btn-secondary:focus,
+.btn-secondary.focus {
+    color: #fff;
+    background-color: #5c636a;
+    border-color: #565e64;
+    box-shadow: 0 0 0 0.25rem rgba(130, 138, 145, 0.5);
+}
+
+.btn-secondary:active,
+.btn-secondary.active,
+.show > .btn-secondary.dropdown-toggle {
+    color: #fff;
+    background-color: #545b62;
+    border-color: #4e555b;
+}
+
+.btn-secondary:disabled,
+.btn-secondary.disabled {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+    opacity: 0.65;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #06a8c9;
+    border-color: #0dcaf0;
+}
+
+.btn-info:hover {
+    color: #fff;
+    background-color: #31d2f2;
+    border-color: #25cff2;
+}
+
+.btn-info:focus,
+.btn-info.focus {
+    color: #fff;
+    background-color: #31d2f2;
+    border-color: #25cff2;
+    box-shadow: 0 0 0 0.25rem rgba(11, 172, 204, 0.5);
+}
+
+.btn-info:active,
+.btn-info.active,
+.show > .btn-info.dropdown-toggle {
+    color: #fff;
+    background-color: #3dd5f3;
+    border-color: #25cff2;
+}
+
+.btn-info:disabled,
+.btn-info.disabled {
+    color: #fff;
+    background-color: #0dcaf0;
+    border-color: #0dcaf0;
+    opacity: 0.65;
+}
+
+/* Flexbox layout for responsive boxes */
+.row-layout:nth-child(1) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Added gap for spacing between columns */
+    justify-content: center;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+/* Styling for each data card */
+.row-layout:nth-child(1) .data-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between elements inside the card */
+    background-color: white;
+    /* border-radius: 8px; */
+    padding: 15px 25px;
+    flex: 0 0 auto; /* Don't grow or shrink, base size on content */
+    width: fit-content; /* Width adjusts to content */
+    min-width: 230px; /* Minimum width for small numbers */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    text-align: left; /* Align content to the left */
+    margin: 0;
+}
+
+/* Hover effect for interactivity */
+.row-layout:nth-child(1) .data-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Heading styling */
+.row-layout:nth-child(1) .data-card .card-heading {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px; /* Replace me-2 for margin */
+    color: #043066;
+}
+
+/* Metric value styling to handle large numbers */
+.row-layout:nth-child(1) .data-card .metric-value {
+    font-size: 45px;
+    font-weight: 500;
+    color: #043066;
+    word-break: break-all; /* Break long numbers to wrap */
+}
+
+/* Styling for each data card */
+.row-layout:nth-child(1) .data-card:nth-child(1) {
+    background-color: #043066;
+}
+
+/* Styling for each data card */
+.row-layout:nth-child(1) .data-card:nth-child(1) .card-heading {
+    color: white;
+}
+
+.row-layout:nth-child(1) .data-card:nth-child(1) .metric-value {
+    color: white;
+}
+
+.row-layout:nth-child(2) {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 20px;
+    padding: 0;
+}
+
+.row-layout:nth-child(3) {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 20px;
+    padding: 0;
+}
+
+/* This is the css updated on 15/05/2025*/
+.chart-container {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 650px;
+    padding: 15px 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.row-layout:nth-child(4) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+.row-layout:nth-child(4) .chart-container {
+    width: 400px;
+}
+
+.register-mb-3-with-import {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: end;
+}
+.register-mb-3-with-import div {
+    width: 80%;
+}
+.register-mb-3-with-import button {
+    width: 20%;
+    margin: 0;
+    height: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.view-customer-card-body {
+    min-width: 1200px;
+}
+
+.dropdown {
+    position: relative;
+}
+.dropdown-content {
+    display: none;
+    background-color: #022856;
+    padding-left: 20px;
+    transition: display 0.3s ease;
+}
+
+.dropdown-content.hover {
+    background-color: #1a3c7a; /* New background color when any link is hovered */
+}
+
+.top-links-menu .dropdown .dropdown-content a {
+    padding-top: 15px;
+    padding-bottom: 0px;
+    text-decoration: none;
+}
+
+.top-links-menu .dropdown .dropdown-content a:last-child {
+    padding-bottom: 15px; /* Adds padding to the last link */
+}
+
+.dropdown-content a:hover {
+    font-weight: 500;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.top-links-menu i {
+    margin-right: 8px; /* Adds space between the icon and "Order" text */
+}
+
+.dropbtn i {
+    margin-right: 12px; /* Adds space between the icon and "Order" text */
+    margin-left: 3px;
+}
+
+.top-links-menu-customers i {
+    margin-right: 10px; /* Adds space between the icon and "Customers" text */
+    margin-left: 2px;
+}
+
+.top-links-menu-accounting i {
+    margin-right: 9px; /* Adds space between the icon and "Accounting" text */
+    margin-left: 1px;
+}
+
+.top-links-menu-administration i {
+    margin-right: 9px; /* Adds space between the icon and "Administration" text */
+    margin-left: 2px;
+}
+
+.info-cell {
+    text-align: start;
+    font-size: 14px;
+    white-space: nowrap; /* prevents line break between old/new values */
+}
+
+.info-label {
+    display: inline-block;
+    min-width: 90px; /* or try 100px if needed */
+    font-weight: bold;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.tariff-label {
+    color: #007bff;
+}
+
+.ip-label {
+    color: #f0ad4e;
+}
+
+.location-label {
+    color: #17a2b8;
+}
+
+.status-label {
+    color: #6c757d;
+}
+
+.old-value {
+    color: #dc3545;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+.new-value {
+    color: #28a745;
+    font-weight: 500;
+}
+
+.arrow {
+    margin: 0 6px;
+    font-weight: bold;
+    color: #333;
+}
+
+.text-muted {
+    color: #999;
+}
+
+.section-title {
+    background: #a2cdfb;
+    padding: 3px 10px;
+    font-weight: 500;
+    border: 1px solid #000;
+    width: 100%;
+}
+
+/* Register Form Version 2.0 */
+:root {
+    --border: #cfcfcf;
+    --text: #111;
+    --muted: #6b7280;
+    --req: #d10f0f;
+    --input-border: #bfbfbf;
+    --btn: #1f66ff;
+    --btn-hover: #1557e6;
+    --bg: #fff;
+    --gap: 40px;
+    --row-gap: 5px;
+}
+
+.register-form {
+    width: 1300px;
+    /* width:min(1600px, 100%); */
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: var(--bg);
+    padding: 13px 15px;
+    border-radius: 5px;
+}
+
+.register-form .title {
+    font-weight: 700;
+    font-size: 18px;
+    margin: 0 0 8px 0;
+    position: relative;
+}
+
+.register-form .sub-title {
+    margin-top: 15px;
+}
+
+.register-form .title:after {
+    content: "";
+    display: block;
+    border-top: 1px solid var(--border);
+    margin-top: 10px;
+}
+
+/* 2-column layout */
+.register-form .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap);
+    padding: 10px 15px;
+}
+
+/* Each column has stacked rows */
+.register-form .col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--row-gap);
+}
+
+/* Row layout: label + colon + control */
+.register-form .row {
+    display: flex;
+    align-items: start;
+    gap: 10px;
+    min-height: 25px;
+}
+
+.register-form .label {
+    width: 180px; /* aligns like the photo */
+    white-space: nowrap;
+    font-size: 15px;
+    margin-top: 4px;
+    color: #000;
+}
+.register-form .colon {
+    margin-top: 2px;
+}
+.register-form .label .req {
+    color: var(--req);
+    font-weight: 700;
+    margin-left: 2px;
+}
+.register-form .colon {
+    width: 10px;
+    text-align: center;
+    color: #000;
+    flex: 0 0 auto;
+    margin-right: 0px;
+}
+
+.register-form .control {
+    flex: 1 1 auto;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.register-form input,
+.register-form select,
+.register-form textarea {
+    width: 100%;
+    height: 25px;
+    border: 1px solid var(--input-border);
+    border-radius: 3px;
+    padding: 0 7px;
+    font: inherit;
+    background: #fff;
+    outline: none;
+    font-size: 15px;
+}
+.register-form textarea {
+    resize: vertical;
+    min-height: 25px;
+}
+.register-form input::placeholder {
+    color: #9aa0a6;
+    font-size: 14px;
+}
+
+/* Make dropdown look like classic form */
+.register-form select {
+    padding-right: 22px;
+    background:
+        linear-gradient(45deg, transparent 50%, #666 50%) calc(100% - 12px)
+            50%/6px 6px no-repeat,
+        linear-gradient(135deg, #666 50%, transparent 50%) calc(100% - 7px)
+            50%/6px 6px no-repeat,
+        linear-gradient(to right, transparent, transparent) 0 0/100% 100%
+            no-repeat;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.qty-btn {
+    width: 25px;
+    height: 25px;
+    border: 1px solid #ccc;
+    background: #f8f9fa;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qty-btn:hover {
+    background: #e9ecef;
+}
+
+/* Remove margin/padding from pool select in IP rows */
+.register-form .ip-row .pool-select {
+    padding: 0;
+    margin: 0;
+}
+
+.btn-v2 {
+    font-size: 15px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .row-layout:nth-child(1) .data-card {
+        flex: 1 1 100%; /* Full width on small screens */
+        width: 100%; /* Override fit-content for smaller screens */
+    }
+
+    .metric-value {
+        font-size: 40px; /* Keep font size consistent on tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .row-layout:nth-child(1) {
+        gap: 15px;
+    }
+
+    .row-layout:nth-child(1) .data-card {
+        padding: 15px;
+    }
+
+    .card-heading {
+        font-size: 1rem;
+    }
+
+    .metric-value {
+        font-size: 30px; /* Smaller font for mobile */
+    }
+}

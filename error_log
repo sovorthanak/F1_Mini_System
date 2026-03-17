@@ -1,0 +1,16 @@
+[18-Jun-2025 10:43:53 Asia/Phnom_Penh] PHP Fatal error:  Cannot redeclare App\Jobs\LogTestJob::handle() in /home/fastoneisp/public_html/app/Jobs/LogTestJob.php on line 30
+[22-Jun-2025 12:15:31 Asia/Phnom_Penh] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fastoneisp/public_html/vendor/laravel/framework/src/Illuminate/Database/Query/Grammars/Grammar.php on line 110
+[22-Jun-2025 13:16:54 Asia/Phnom_Penh] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fastoneisp/public_html/vendor/nesbot/carbon/src/Carbon/Traits/Creator.php on line 91
+[22-Jun-2025 13:24:32 Asia/Phnom_Penh] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fastoneisp/public_html/vendor/laravel/framework/src/Illuminate/Queue/QueueServiceProvider.php on line 207
+[22-Jun-2025 13:45:07 Asia/Phnom_Penh] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fastoneisp/public_html/vendor/laravel/framework/src/Illuminate/Queue/Worker.php on line 812
+[22-Jun-2025 14:09:04 Asia/Phnom_Penh] PHP Fatal error:  Maximum execution time of 30 seconds exceeded in /home/fastoneisp/public_html/vendor/laravel/framework/src/Illuminate/Collections/Arr.php on line 261
+[03-Dec-2025 08:10:53 UTC] PHP Parse error:  syntax error, unexpected token "->", expecting end of file in /home/fastoneisp/source_code/bootstrap/app.php on line 15
+[03-Dec-2025 08:10:53 UTC] PHP Parse error:  syntax error, unexpected token "->", expecting end of file in /home/fastoneisp/source_code/bootstrap/app.php on line 15
+[03-Dec-2025 08:10:53 UTC] PHP Parse error:  syntax error, unexpected token "->", expecting end of file in /home/fastoneisp/source_code/bootstrap/app.php on line 15
+[03-Dec-2025 08:11:00 UTC] PHP Parse error:  syntax error, unexpected token "->", expecting end of file in /home/fastoneisp/source_code/bootstrap/app.php on line 15
+[03-Dec-2025 08:11:10 UTC] PHP Parse error:  syntax error, unexpected token "->", expecting end of file in /home/fastoneisp/source_code/bootstrap/app.php on line 15
+[03-Dec-2025 08:11:36 UTC] PHP Parse error:  syntax error, unexpected token "->", expecting end of file in /home/fastoneisp/source_code/bootstrap/app.php on line 15
+[03-Dec-2025 08:11:58 UTC] PHP Parse error:  syntax error, unexpected token "->", expecting end of file in /home/fastoneisp/source_code/bootstrap/app.php on line 15
+[03-Dec-2025 08:12:10 UTC] PHP Parse error:  syntax error, unexpected token "->", expecting end of file in /home/fastoneisp/source_code/bootstrap/app.php on line 15
+[03-Dec-2025 15:27:35 Asia/Phnom_Penh] PHP Fatal error:  Cannot use Illuminate\Http\Request as Request because the name is already in use in /home/fastoneisp/source_code/app/Http/Controllers/Api/APIController.php on line 12
+[03-Dec-2025 15:28:05 Asia/Phnom_Penh] PHP Fatal error:  Cannot use Illuminate\Http\Request as Request because the name is already in use in /home/fastoneisp/source_code/app/Http/Controllers/Api/APIController.php on line 12
