@@ -49,7 +49,7 @@
             <span>
                 <div class="sidebar-header">
                     <a href="/">
-                        Mini System Test
+                        Server System
                     </a>
                     <!-- Add the X button here -->
                     <button id="sidebarToggle" class="sidebar-toggle">
