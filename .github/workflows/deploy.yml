@@ -10,45 +10,28 @@ jobs:
     runs-on: [self-hosted, linux]
 
     steps:
-      - name: Trust GitHub SSH host
+      - name: Setup SSH known hosts
         run: |
           mkdir -p ~/.ssh
           ssh-keyscan -H github.com >> ~/.ssh/known_hosts
-          chmod 700 ~/.ssh
-          chmod 644 ~/.ssh/known_hosts
+
+      - name: Mark repo as safe
+        run: |
+          git config --global --add safe.directory /var/www/F1_Mini_System
 
       - name: Deploy application
         run: |
           cd /var/www/F1_Mini_System
 
-          # Ensure .env exists
-          if [ ! -f .env ]; then
-            cp .env.example .env
-          fi
-
-          # Pull latest code safely
+          # Pull latest code (force clean)
           git fetch origin
           git reset --hard origin/main
 
-          # Start maintenance
-          docker compose exec -T app php artisan down || true
+          # Start containers (NO rebuild)
+          docker compose up -d
 
-          # Build & start containers
-          docker compose up -d --build
-
-          # Install dependencies
-          docker compose exec -T app composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
-
-          # Fix permissions
-          docker compose exec -T app chmod -R 775 storage bootstrap/cache
-
-          # Run migrations
+          # Run Laravel commands
           docker compose exec -T app php artisan migrate --force
-
-          # Optimize Laravel
-          docker compose exec -T app php artisan config:cache
-          docker compose exec -T app php artisan route:cache
-          docker compose exec -T app php artisan view:cache
-
-          # Stop maintenance
-          docker compose exec -T app php artisan up
+          docker compose exec -T app php artisan config:clear
+          docker compose exec -T app php artisan route:clear
+          docker compose exec -T app php artisan view:clear
