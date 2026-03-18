@@ -15,7 +15,7 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan -H github.com >> ~/.ssh/known_hosts
 
-      - name: Mark repo as safe
+      - name: Mark repo as safe!
         run: |
           git config --global --add safe.directory /var/www/F1_Mini_System
 
