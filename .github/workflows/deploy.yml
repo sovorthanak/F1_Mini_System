@@ -19,12 +19,12 @@ jobs:
 
       - name: Fix writable Laravel dirs
         run: |
-          cd /var/www/F1-Mini-System
+          cd /var/www/F1_Mini_System
           chmod -R u+rwX storage bootstrap/cache || true
 
       - name: Deploy latest code
         run: |
-          cd /var/www/F1-Mini-System
+          cd /var/www/F1_Mini_System
           git fetch origin
           git checkout main
           git pull --rebase origin main
