@@ -23,15 +23,19 @@ jobs:
         run: |
           cd /var/www/F1_Mini_System
 
-          # Pull latest code (force clean)
           git fetch origin
           git reset --hard origin/main
 
-          # Start containers (NO rebuild)
           docker compose up -d
 
-          # Run Laravel commands
-          docker compose exec -T app php artisan migrate --force
+          echo "⏳ Waiting for app container..."
+          sleep 10
+
+          # Check if container is running
+          docker compose ps
+
+          # Run only if container is healthy
+          docker compose exec -T app php artisan migrate --force || exit 1
           docker compose exec -T app php artisan config:clear
           docker compose exec -T app php artisan route:clear
           docker compose exec -T app php artisan view:clear
