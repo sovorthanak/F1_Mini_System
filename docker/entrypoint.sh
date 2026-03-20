@@ -3,6 +3,10 @@ set -e
 
 echo "Starting F1 Mini System..."
 
+# Fix storage & cache permissions before anything else
+chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+
 # Cache configuration
 php artisan config:cache
 php artisan route:cache

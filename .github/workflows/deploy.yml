@@ -27,15 +27,15 @@ jobs:
           git fetch origin
           git reset --hard origin/main
 
-          # Start containers
-          docker compose up -d
+          # Fix Laravel storage & cache permissions BEFORE starting containers
+          chown -R 33:33 storage bootstrap/cache
+          chmod -R 775 storage bootstrap/cache
+
+          # Rebuild and start containers
+          docker compose up -d --build
 
           echo "⏳ Waiting for app container to be ready..."
           sleep 10
-
-          # Fix Laravel storage & cache permissions
-          docker compose exec -T app chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
-          docker compose exec -T app chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
           # Run migrations and clear caches
           docker compose exec -T app php artisan migrate --force || exit 1
