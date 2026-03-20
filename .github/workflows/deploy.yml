@@ -23,18 +23,14 @@ jobs:
         run: |
           cd /var/www/F1_Mini_System
 
-          # Restore ownership to runner so git can overwrite files
-          sudo chown -R $(id -u):$(id -g) storage bootstrap/cache
+          # Use the running container (root) to restore ownership so git can overwrite files
+          docker compose exec -T app chown -R $(id -u):$(id -g) /var/www/html/storage /var/www/html/bootstrap/cache 2>/dev/null || true
 
           # Pull latest code safely
           git fetch origin
           git reset --hard origin/main
 
-          # Fix Laravel storage & cache permissions BEFORE starting containers
-          sudo chown -R 33:33 storage bootstrap/cache
-          sudo chmod -R 775 storage bootstrap/cache
-
-          # Rebuild and start containers
+          # Rebuild and start containers (entrypoint.sh handles www-data permissions)
           docker compose up -d --build
 
           echo "⏳ Waiting for app container to be ready..."
