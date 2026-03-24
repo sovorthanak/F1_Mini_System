@@ -94,6 +94,7 @@
                             </a>
                             <div class="dropdown-content">
                                 <a href="{{ route('register') }}"> Register</a>
+                                <a href="{{ route('request-change') }}"> Customer Request</a>
                             </div>
                         </div>
                     </div>
@@ -125,7 +126,6 @@
                             </a>
 
                             <div class="dropdown-content">
-                                <a href="{{ route('request-change') }}"> Customer Request</a>
                                 <a href="{{ route('request-testing') }}">Request Testing</a>
                                 <a href="{{ route('schedule.request') }}"">Schedule Request</a>
                                 <a href="{{ route('schedule.new-register') }}"">Schedule New Register</a>
